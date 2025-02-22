@@ -1,12 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using LojaGR.Data;
+using Microsoft.EntityFrameworkCore;
 namespace LojaGR.Models
 {
     public class Produto
     {
+        [Key]
         public int Id {get; set;}
         public string Nome {get; set;} = string.Empty;
 
@@ -15,10 +20,11 @@ namespace LojaGR.Models
 
         public string Descricao {get; set;} = string.Empty;
 
+        [ForeignKey("Categoria")]
         public int CategoriaId { get; set; }
+        
         public Categoria Categoria { get; set; } = null!;
 
-        public List<ProdutoCor> ProdutoCores {get; set;} = new();
-        public List<Imagem> Imagens {get; set;} = new();
+         public List<Imagem> Imagens {get; set;} = new();
     }
 }

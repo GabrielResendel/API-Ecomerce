@@ -3,6 +3,7 @@ using LojaGR.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LOjaGR.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250222013240_AddProdutoCategoriaRelation")]
+    partial class AddProdutoCategoriaRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,25 +120,17 @@ namespace LOjaGR.Migrations
 
             modelBuilder.Entity("LojaGR.Models.ProdutoCor", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("ProdutoId")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProdutoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
+                    b.HasKey("ProdutoId", "CorId");
 
                     b.HasIndex("CorId");
 
-                    b.HasIndex("ProdutoId");
-
-                    b.ToTable("ProdutoCors");
+                    b.ToTable("ProdutoCores");
                 });
 
             modelBuilder.Entity("LojaGR.Models.Imagem", b =>
@@ -162,7 +157,7 @@ namespace LOjaGR.Migrations
                     b.HasOne("LojaGR.Models.Categoria", "Categoria")
                         .WithMany("Produtos")
                         .HasForeignKey("CategoriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Categoria");
@@ -171,13 +166,13 @@ namespace LOjaGR.Migrations
             modelBuilder.Entity("LojaGR.Models.ProdutoCor", b =>
                 {
                     b.HasOne("LojaGR.Models.Cor", "Cor")
-                        .WithMany()
+                        .WithMany("ProdutoCores")
                         .HasForeignKey("CorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("LojaGR.Models.Produto", "Produto")
-                        .WithMany()
+                        .WithMany("ProdutoCores")
                         .HasForeignKey("ProdutoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -192,9 +187,16 @@ namespace LOjaGR.Migrations
                     b.Navigation("Produtos");
                 });
 
+            modelBuilder.Entity("LojaGR.Models.Cor", b =>
+                {
+                    b.Navigation("ProdutoCores");
+                });
+
             modelBuilder.Entity("LojaGR.Models.Produto", b =>
                 {
                     b.Navigation("Imagens");
+
+                    b.Navigation("ProdutoCores");
                 });
 #pragma warning restore 612, 618
         }

@@ -155,3 +155,4 @@ C:\Users\Gabriel\Documents\Loja GR\LojaGR\obj\Debug\net9.0\refint\LOjaGR.dll
 C:\Users\Gabriel\Documents\Loja GR\LojaGR\obj\Debug\net9.0\LOjaGR.pdb
 C:\Users\Gabriel\Documents\Loja GR\LojaGR\obj\Debug\net9.0\LOjaGR.genruntimeconfig.cache
 C:\Users\Gabriel\Documents\Loja GR\LojaGR\obj\Debug\net9.0\ref\LOjaGR.dll
+C:\Users\Gabriel\Documents\Loja GR\LojaGR\obj\Debug\net9.0\LOjaGR.sourcelink.json
