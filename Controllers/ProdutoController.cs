@@ -3,6 +3,7 @@ using LojaGR.Data;
 using LojaGR.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using LojaGR.DTOs;
 
 namespace LojaGR.Controllers
 {
@@ -32,50 +33,41 @@ namespace LojaGR.Controllers
                     return produto;
            }
 
-           [HttpPost]
-          public async Task<ActionResult<Produto>> PostProduto([FromBody] Produto produto)
-           {
-                Console.WriteLine($"Recebido: Nome={produto.Nome}, Preço={produto.Preco}, CategoriaId={produto.CategoriaId}");
-               // Busca a categoria no banco de dados
-               var categoria = await _context.Categorias.FindAsync(produto.CategoriaId);
-               
-               if (categoria == null)
-                    return BadRequest(new { message = "Categoria não encontrada" });
-
-               produto.Categoria = categoria; // Associa a categoria existente
-
-               _context.Produtos.Add(produto);
-               await _context.SaveChangesAsync();
-
-               return CreatedAtAction(nameof(GetProduto), new { id = produto.Id }, produto);
-           }
-
-           [HttpPut("{id}")]
-          public async Task<IActionResult> PutProduto(int id, Produto produto)
+        
+          [HttpPost("created")]
+          public async Task<ActionResult<Produto>> PostProduto([FromBody] ProdutoDto produtoDto)
           {
-               if (id != produto.Id) return BadRequest();
+          var produto = new Produto
+          {
+               Nome = produtoDto.Nome,
+               Preco = produtoDto.Preco,
+               Descricao = produtoDto.Descricao,
+               Quantidade = produtoDto.Quantidade,
+               CategoriaId = produtoDto.CategoriaId
+          };
 
-               var produtoExistente = await _context.Produtos.Include(p => p.Imagens).FirstOrDefaultAsync(p => p.Id == id);
+          _context.Produtos.Add(produto);
+          await _context.SaveChangesAsync();
 
-               if (produtoExistente == null) return NotFound();
+          return CreatedAtAction(nameof(GetProduto), new { id = produto.Id }, produto);
+          }
 
-               // Atualiza os campos manualmente
-               produtoExistente.Nome = produto.Nome;
-               produtoExistente.Preco = produto.Preco;
-               produtoExistente.Descricao = produto.Descricao;
-               
-               // Verifica se a categoria mudou
-               if (produtoExistente.CategoriaId != produto.CategoriaId)
-               {
-                    var categoria = await _context.Categorias.FindAsync(produto.CategoriaId);
-                    if (categoria == null) return BadRequest(new { message = "Categoria não encontrada" });
 
-                    produtoExistente.CategoriaId = produto.CategoriaId;
-                    produtoExistente.Categoria = categoria;
-               }
+          [HttpPut("{id}")]
+          public async Task<IActionResult> PutProduto(int id, [FromBody] ProdutoDto produtoDto)
+          {
+          var produto = await _context.Produtos.FindAsync(id);
+          if (produto == null) return NotFound();
 
-               await _context.SaveChangesAsync();
-               return NoContent();    
+          produto.Nome = produtoDto.Nome;
+          produto.Preco = produtoDto.Preco;
+          produto.Descricao = produtoDto.Descricao;
+          produto.Quantidade = produtoDto.Quantidade;
+          produto.CategoriaId = produtoDto.CategoriaId;
+
+          await _context.SaveChangesAsync();
+
+          return NoContent();
           }
 
            [HttpDelete("{id}")]

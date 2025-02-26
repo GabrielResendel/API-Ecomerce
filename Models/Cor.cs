@@ -13,5 +13,6 @@ namespace LojaGR.Models
         public string Nome {get; set;} = string.Empty;
         public string HexaDec {get; set;} = string.Empty;
 
+    
     }
 }

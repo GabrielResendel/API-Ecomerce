@@ -19,12 +19,14 @@ namespace LojaGR.Models
         public decimal Preco {get; set;}
 
         public string Descricao {get; set;} = string.Empty;
+        public int Quantidade {get; set;}
 
         [ForeignKey("Categoria")]
         public int CategoriaId { get; set; }
         
-        public Categoria Categoria { get; set; } = null!;
+        public Categoria? Categoria { get; set; }
 
          public List<Imagem> Imagens {get; set;} = new();
+
     }
 }
