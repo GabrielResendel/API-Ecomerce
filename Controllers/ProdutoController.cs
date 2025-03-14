@@ -43,7 +43,8 @@ namespace LojaGR.Controllers
                Preco = produtoDto.Preco,
                Descricao = produtoDto.Descricao,
                Quantidade = produtoDto.Quantidade,
-               CategoriaId = produtoDto.CategoriaId
+               CategoriaId = produtoDto.CategoriaId,
+               Capa = produtoDto.Capa
           };
 
           _context.Produtos.Add(produto);
@@ -64,6 +65,7 @@ namespace LojaGR.Controllers
           produto.Descricao = produtoDto.Descricao;
           produto.Quantidade = produtoDto.Quantidade;
           produto.CategoriaId = produtoDto.CategoriaId;
+          produto.Capa = produtoDto.Capa;
 
           await _context.SaveChangesAsync();
 

@@ -28,6 +28,19 @@ namespace LojaGR.Controllers
             return await _context.Imagens.Include(i => i.Produto).Include(i => i.Cor).ToListAsync();
         }
 
+        [HttpGet("{produtoId}")]
+        public async Task<IActionResult> GetImagensPorProduto(int produtoId)
+        {
+            var imagens = await _context.Imagens
+                .Where(i => i.ProdutoId == produtoId)
+                .ToListAsync();
+
+            if (!imagens.Any())
+                return NotFound("Nenhuma imagem encontrada para este produto.");
+
+            return Ok(imagens);
+        }
+
         // Buscar imagens por ProdutoId e CorId
         [HttpGet("{produtoId}/{corId}")]
         public async Task<ActionResult<IEnumerable<Imagem>>> GetImagensPorProdutoECor(int produtoId, int corId)

@@ -17,6 +17,7 @@ namespace LojaGR.Models
 
         [Column(TypeName = "decimal(18,4)")]
         public decimal Preco {get; set;}
+        
 
         public string Descricao {get; set;} = string.Empty;
         public int Quantidade {get; set;}
@@ -25,6 +26,7 @@ namespace LojaGR.Models
         public int CategoriaId { get; set; }
         
         public Categoria? Categoria { get; set; }
+        public string Capa {get;set;} = string.Empty;
 
          public List<Imagem> Imagens {get; set;} = new();
 
