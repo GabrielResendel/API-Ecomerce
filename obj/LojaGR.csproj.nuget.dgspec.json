@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gabriel\\Documents\\Loja GR\\api\\LOjaGR.csproj": {}
+    "C:\\Users\\Gabriel\\Documents\\Loja GR\\api\\LojaGR.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gabriel\\Documents\\Loja GR\\api\\LOjaGR.csproj": {
+    "C:\\Users\\Gabriel\\Documents\\Loja GR\\api\\LojaGR.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gabriel\\Documents\\Loja GR\\api\\LOjaGR.csproj",
-        "projectName": "LOjaGR",
-        "projectPath": "C:\\Users\\Gabriel\\Documents\\Loja GR\\api\\LOjaGR.csproj",
+        "projectUniqueName": "C:\\Users\\Gabriel\\Documents\\Loja GR\\api\\LojaGR.csproj",
+        "projectName": "LojaGR",
+        "projectPath": "C:\\Users\\Gabriel\\Documents\\Loja GR\\api\\LojaGR.csproj",
         "packagesPath": "C:\\Users\\Gabriel\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Gabriel\\Documents\\Loja GR\\api\\obj\\",
         "projectStyle": "PackageReference",
