@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LOjaGR")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+893521bc0d914f77ca3513d6b8a5b649dbb3ca64")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed2e6fedc0b24aff62500f4f02761e4f6ae22e5a")]
 [assembly: System.Reflection.AssemblyProductAttribute("LOjaGR")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LOjaGR")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

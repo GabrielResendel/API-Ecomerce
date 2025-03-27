@@ -25,6 +25,16 @@ using Microsoft.EntityFrameworkCore;
             {
                 return await _context.Categorias.ToListAsync();
             }
+            [HttpGet("{id}")]
+            public async Task<ActionResult<Categoria>> GetCategoria(int id)
+            {
+                var categoria = await _context.Categorias.FindAsync(id);
+                if (categoria == null)
+                {
+                    return NotFound("Categoria não encontrada.");
+                }
+                return Ok(categoria);
+            }
 
             [HttpPost]
             public async Task<ActionResult<Categoria>> PostCategoria(Categoria categoria)

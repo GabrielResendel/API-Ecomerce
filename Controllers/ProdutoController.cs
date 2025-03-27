@@ -33,6 +33,16 @@ namespace LojaGR.Controllers
                     return produto;
            }
 
+           [HttpGet("categoria/{categoriaId}")]
+          public async Task<IActionResult> GetProdutosPorCategoria(int categoriaId)
+          {
+               var produtos = await _context.Produtos
+                    .Where(p => p.CategoriaId == categoriaId)
+                    .ToListAsync();
+
+               return Ok(produtos); // Retorna sempre 200 OK com um array vazio, se não houver produtos
+          }
+
         
           [HttpPost("created")]
           public async Task<ActionResult<Produto>> PostProduto([FromBody] ProdutoDto produtoDto)
