@@ -16,5 +16,7 @@ namespace LojaGR.Data
         public DbSet<Imagem> Imagens { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<ProdutoTamanho> ProdutoTamanhos { get; set; }
+        public DbSet<Pedido> Pedidos { get; set; }
+        public DbSet<ItemPedido> ItemPedidos { get; set; }
         }
     }
