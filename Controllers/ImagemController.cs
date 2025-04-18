@@ -32,6 +32,7 @@ namespace LojaGR.Controllers
         public async Task<IActionResult> GetImagensPorProduto(int produtoId)
         {
             var imagens = await _context.Imagens
+                .Include(i => i.Cor)
                 .Where(i => i.ProdutoId == produtoId)
                 .ToListAsync();
 

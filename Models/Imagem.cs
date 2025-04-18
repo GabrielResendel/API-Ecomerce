@@ -21,6 +21,6 @@ namespace LojaGR.Models
 
         [ForeignKey("Cor")]
         public int CorId { get; set; }
-        public Cor Cor { get; set; } = null!;
+        public Cor? Cor { get; set; }
     }
 }
